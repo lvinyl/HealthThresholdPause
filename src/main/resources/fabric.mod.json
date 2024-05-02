@@ -5,11 +5,11 @@
 	"name": "Health Threshold Pause",
 	"description": "Pause/disconnect from the game if health reaches a configurable threshold",
 	"authors": [
-		"lvnyl"
+		"lvinyl"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/healththresholdpause/",
+		"sources": "https://github.com/lvinyl/HealthThresholdPause"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/HealthThresholdPause/icon.png",
