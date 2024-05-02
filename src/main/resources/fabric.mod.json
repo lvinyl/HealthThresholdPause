@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "health-threshold-pause",
+	"version": "${version}",
+	"name": "Health Threshold Pause",
+	"description": "Pause/disconnect from the game if health reaches a configurable threshold",
+	"authors": [
+		"lvnyl"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/HealthThresholdPause/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.example.HealthThresholdPauseMod"
+		],
+		"client": [
+			"com.example.HealthThresholdPauseClient"
+		]
+	},
+	"mixins": [
+		"template-mod.mixins.json",
+		{
+			"config": "template-mod.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.10",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
