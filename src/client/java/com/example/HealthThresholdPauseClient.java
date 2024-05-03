@@ -77,6 +77,7 @@ public class HealthThresholdPauseClient implements ClientModInitializer {
         // Check if keybind is pressed
         while (toggleKey.wasPressed()) {
             isHealthThresholdEnabled = !isHealthThresholdEnabled;
+            client.inGameHud.getChatHud().addMessage(Text.literal((isHealthThresholdEnabled) ? "Health threshold enabled." : "Health threshold disabled.")); // Add toggle message
         }
     }
 }
