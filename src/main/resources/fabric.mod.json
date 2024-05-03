@@ -11,7 +11,7 @@
 		"homepage": "https://modrinth.com/mod/healththresholdpause/",
 		"sources": "https://github.com/lvinyl/HealthThresholdPause"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/HealthThresholdPause/icon.png",
 	"environment": "*",
 	"entrypoints": {
