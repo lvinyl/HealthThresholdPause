@@ -8,4 +8,10 @@ Commands:
 
 /healthThreshold current - Shows the current health threshold
 
+/healthThreshold toggle - Toggles the mod
+
+Keybinds:
+
+H - Toggles the mod
+
 Be advised that if you are the host of a LAN world, instead of saving and quitting the game, it will pause the game (the game will still run in the background and you will still take damage), so I apologize in advance since this is my first plugin.
