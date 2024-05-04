@@ -1,4 +1,4 @@
-package com.example;
+package me.lvinyl;
 
 import net.fabricmc.api.ModInitializer;
 

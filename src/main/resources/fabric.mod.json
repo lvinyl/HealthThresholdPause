@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.HealthThresholdPauseMod"
+			"me.lvinyl.HealthThresholdPauseMod"
 		],
 		"client": [
-			"com.example.HealthThresholdPauseClient"
+			"me.lvinyl.HealthThresholdPauseClient"
 		]
 	},
 	"mixins": [

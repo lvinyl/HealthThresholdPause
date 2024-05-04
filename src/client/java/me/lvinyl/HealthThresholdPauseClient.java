@@ -1,4 +1,4 @@
-package com.example;
+package me.lvinyl;
 
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import net.fabricmc.api.ClientModInitializer;
