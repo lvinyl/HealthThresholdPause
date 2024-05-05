@@ -23,9 +23,9 @@
 		]
 	},
 	"mixins": [
-		"template-mod.mixins.json",
+		"HealthThreshold.mixins.json",
 		{
-			"config": "template-mod.client.mixins.json",
+			"config": "HealthThreshold.client.mixins.json",
 			"environment": "client"
 		}
 	],

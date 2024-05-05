@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftClient.class)
-public class ExampleClientMixin {
+public class HealthThresholdClientMixin {
 	@Inject(at = @At("HEAD"), method = "run")
 	private void init(CallbackInfo info) {
 		// This code is injected into the start of MinecraftClient.run()V
