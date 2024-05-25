@@ -27,6 +27,9 @@ public class HealthThresholdPauseClient implements ClientModInitializer {
     private boolean isHealthThresholdEnabled = true; // New flag
     private KeyBinding toggleKey; // New KeyBinding
     private Properties config; // Properties object for storing settings
+    private float tickDelay = 5.0f; // Default tick delay
+    private float tickCounter = 0f; // Counter for ticks
+
     @Override
     public void onInitializeClient() {
         config = new Properties();
@@ -63,11 +66,20 @@ public class HealthThresholdPauseClient implements ClientModInitializer {
                                 saveConfig();
                                 return 1;
                             }))
+                    .then(ClientCommandManager.literal("delay") // Subcommand for delay
+                            .then(ClientCommandManager.argument("ticks", FloatArgumentType.floatArg())
+                                    .executes(context -> {
+                                        tickDelay = context.getArgument("ticks", Float.class);
+                                        context.getSource().sendFeedback(Text.literal("Tick delay set to " + tickDelay));
+                                        saveConfig();
+                                        return 0;
+                                    })))
             );
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(this::onClientTick);
     }
+
     // Load config from file
     private void loadConfig() {
         try {
@@ -78,6 +90,7 @@ public class HealthThresholdPauseClient implements ClientModInitializer {
 
                 healthThreshold = Float.parseFloat(config.getProperty("healthThreshold", String.valueOf(healthThreshold)));
                 isHealthThresholdEnabled = Boolean.parseBoolean(config.getProperty("isHealthThresholdEnabled", String.valueOf(isHealthThresholdEnabled)));
+                tickDelay = Float.parseFloat(config.getProperty("tickDelay", String.valueOf(tickDelay)));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,6 +105,7 @@ public class HealthThresholdPauseClient implements ClientModInitializer {
 
             config.setProperty("healthThreshold", String.valueOf(healthThreshold));
             config.setProperty("isHealthThresholdEnabled", String.valueOf(isHealthThresholdEnabled));
+            config.setProperty("tickDelay", String.valueOf(tickDelay));
 
             config.store(writer, "Health Threshold Pause Client Settings");
             writer.close();
@@ -99,18 +113,24 @@ public class HealthThresholdPauseClient implements ClientModInitializer {
             e.printStackTrace();
         }
     }
+
     private void onClientTick(MinecraftClient client) {
         ClientPlayerEntity player = client.player;
         if (player != null && isHealthThresholdEnabled) { // Check the flag
             if (player.getHealth() <= healthThreshold && !isPaused) {
-                if (client.isInSingleplayer()) {
-                    client.openGameMenu(true);
-                } else {
-                    client.world.disconnect();
+                tickCounter++;
+                if (tickCounter >= tickDelay) {
+                    if (client.isInSingleplayer()) {
+                        client.openGameMenu(true);
+                    } else {
+                        client.world.disconnect();
+                    }
+                    isPaused = true;
+                    tickCounter = 0;
                 }
-                isPaused = true;
             } else if (player.getHealth() > healthThreshold && isPaused) {
                 isPaused = false;
+                tickCounter = 0;
             }
         }
 
