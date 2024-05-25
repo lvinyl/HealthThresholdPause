@@ -6,6 +6,8 @@ Commands:
 
 /healthThreshold set <value> - Sets the health threshold
 
+/healththreshold delay <value> - Sets the delay before pausing/disconnecting from the game
+
 /healthThreshold current - Shows the current health threshold
 
 /healthThreshold toggle - Toggles the mod
